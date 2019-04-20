@@ -1,5 +1,6 @@
 package main
 
+
 object Main extends App {
   def zeroCallsPossibility: Double = 0.1
   val calc = new LifoQueueSystemCalculator(
@@ -7,15 +8,17 @@ object Main extends App {
     0.5,
     100,
     10)
+  val plotter = new Plotter
 
 //  val omega = calc.Omega(2, 3)
 //  val z = 1.0 / (1.0 - omega)
 //  val b = calc.producerFunction(z)
 //  val uncond = calc.unconditionalMean(1)
-//  val stat = (1 to 10).map(x => (x, calc.stationaryProbability(x)))
-//                      .map(x => s"stationaryProbability of ${x._1} = ${x._2}")
+  val stat = (1 to 8).map(x => Map("i" -> x.toString, "Pi" -> calc.stationaryProbability(x)))
   val s = calc.stationaryProbability(8)
-  println(s)
+  val plot = plotter.buildPlot(stat, "i", "Pi")
+  println(plot.toJson)
+  //println(s)
 //  println(s"Omega = $omega")
 //  println(s"z = $z")
 //  println(s"b*(z) = $b" )
