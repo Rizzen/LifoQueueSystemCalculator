@@ -2,6 +2,6 @@ name := "LifoQueueSystem"
 
 version := "0.1"
 
-scalaVersion := "2.12.8"
+scalaVersion := "2.11.12"
 
-libraryDependencies += "org.typelevel" %% "spire" % "0.14.1"
+libraryDependencies += "org.vegas-viz" %% "vegas" % "0.3.9"
