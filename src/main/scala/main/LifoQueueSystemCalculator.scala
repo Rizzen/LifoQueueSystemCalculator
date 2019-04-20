@@ -9,8 +9,8 @@ class LifoQueueSystemCalculator(zeroCallStatePossibility : Double,
   // returns call length for current moment
   private def callLength(i : Double) : Double = staticCallLength
 
-  def omega(k : Int, j : Int) : Double = {
-    if ((k + j) > bufferSize)
+  def omega(k : Int, i : Int) : Double = {
+    if ((k + i) > bufferSize)
       0.0
     else
       1.0 / bufferSize
@@ -18,16 +18,14 @@ class LifoQueueSystemCalculator(zeroCallStatePossibility : Double,
 
   def Omega(i : Int, j : Int): Double = {
     val lower = j - i
-    val upper = bufferSize - i
+    val upper = bufferSize - j
     var sum = 0.0
     for (a <- lower to upper) {
-      sum = sum + omega(a, j)
+      val o = omega(a, j)
+      sum = sum + o
     }
     sum
   }
-
-   // ai
-  private def currentStateSingleCallPossibility(currentCallsCount : Int) : Double = singleCallPossibility
 
   def lengthProbability(length : Int) : Double = {
     length match {
@@ -45,6 +43,8 @@ class LifoQueueSystemCalculator(zeroCallStatePossibility : Double,
     }
     sum
   }
+
+  private def currentStateSingleCallPossibility(currentCallsCount : Int) : Double = singleCallPossibility
 
   def stationaryProbability (number : Int) : Double = {
     val d = unconditionalMean()
