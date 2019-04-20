@@ -10,10 +10,14 @@ object Main extends App {
     100)
 
   val c = calc.Omega(2, 3)
+  val ai = calc.currentStateSingleCallPossibility(2)
   val z = 1.0 / (1.0 - c)
   val b = calc.producerFunction(z)
+  //val uncond = calc.unconditionalMean(1)
 
+  println(s"ai = $ai")
   println(s"Omega = $c")
   println(s"z = $z")
   println(s"b*(z) = $b" )
+  //println(s"unconditional mean = $uncond")
 }
